@@ -1,17 +1,17 @@
 const express = require("express");
 const router = express();
 const bodyParser = require("body-parser");
-const conf = require("./config/config-port.json");
 
 /* router */
-const decryption = require("./decryption/app");
+const credential = require("./credential");
+const aes256cbc = require("./aes256cbc");
 
 /* body parser */
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 /* use function */
-router.use("/decryption", decryption);
+router.use("/", credential);
+router.use("/aes256cbc", aes256cbc);
 
-console.log("The Gateway on port:" + conf.port);
-router.listen(conf.port, "0.0.0.0");
+module.exports = router;
