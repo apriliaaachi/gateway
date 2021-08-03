@@ -1,17 +1,17 @@
 const express = require("express");
 const router = express();
 const bodyParser = require("body-parser");
-const conf = require("./config/config-port.json");
 
 /* router */
-const bayu = require("./bayu/app");
+const credential = require("./credential");
+const decrypt = require("./decrypt");
 
 /* body parser */
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 /* use function */
-router.use("/bayu", bayu);
+router.use("/", credential);
+router.use("/decrypt", decrypt);
 
-console.log("The Gateway on port:" + conf.port);
-router.listen(conf.port, "0.0.0.0");
+module.exports = router;
