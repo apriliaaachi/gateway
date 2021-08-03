@@ -1,0 +1,20 @@
+{
+  "name": "gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node gate-ojt.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apriliaaachi/gateway.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apriliaaachi/gateway/issues"
+  },
+  "homepage": "https://github.com/apriliaaachi/gateway#readme"
+}
