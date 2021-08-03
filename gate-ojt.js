@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express()
 var bodyParser = require('body-parser')
-var conf = require('./ojt/config.json')
+var conf = require('./config/config-port.json')
 
 /* router */
 
