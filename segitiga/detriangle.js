@@ -24,7 +24,7 @@ router.post("/", function (req, res, next) {
   };
   console.log(
     "Request to API: " + conf.url.inqA + " " + JSON.stringify(dataReq)
-  );
+  );   
 
   // variabel regex untuk mengecek abjad didalam string dan alfabet didalam string (sesuai kondisi)
   const regexfornum = /[0-9]/g; //untuk mengecek angka
@@ -35,14 +35,12 @@ router.post("/", function (req, res, next) {
   const regexZero = /^0*$/; //untuk mengecek hanya "0"
   const regexLeadZer0 = /^0+/; //untuk mengecek "0" didepan
 
-  //deklarasi variabel-variabel untuk menentukan jenis segitiga
+  //deklarasi variabel-variabel yang dibutuhkan untuk menentukan jenis segitiga
   var jenis;
   var keliling;
   var sisiA = parseInt(dataReq.sisi1);
   var sisiB = parseInt(dataReq.sisi2);
   var sisiC = parseInt(dataReq.sisi3);
-
-
   // pengkondisian untuk memilih data yang tepat sesuai kondisi (abjad==abcdefg & simbol)
   if (
     dataReq.sisi1.match(regexforalp) == null &&
@@ -96,12 +94,10 @@ router.post("/", function (req, res, next) {
     else if (sisiA == sisiB || sisiB == sisiC) {
       jenis = "Segitiga Sama Sisi";
       keliling = (parseInt(dataReq.sisi1) + parseInt(dataReq.sisi2) + parseInt(dataReq.sisi3)) + "cm";
-    }
-    else if (sisiA == sisiB || sisiA == sisiC) {
+    } else if (sisiA == sisiB || sisiA == sisiC) {
       jenis = "Segitiga Sama Kaki";
       keliling = (parseInt(dataReq.sisi1) + parseInt(dataReq.sisi2) + parseInt(dataReq.sisi3)) + "cm";
-    }
-    else {
+    } else {
       jenis = "Segitiga Sembarang";
       keliling = (parseInt(dataReq.sisi1) + parseInt(dataReq.sisi2) + parseInt(dataReq.sisi3)) + "cm";
     }
