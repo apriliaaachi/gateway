@@ -1,0 +1,19 @@
+{
+    "credential": [
+      {
+        "id": "BTNOJTAPI",
+        "key": "wDaBRdXxOtrwM57l",
+        "secret": "7pycJTpgo4",
+        "sign": false
+      }
+    ],
+    "apikey": {
+      "id": "APIBTN",
+      "key": "BtNT3sting"
+    },
+    "url": {
+      "inqA": "http://localhost:2209/api/inq/inqa2"
+    },
+    "port": 6630
+  }
+  
