@@ -44,14 +44,22 @@ router.post("/", function (req, res, next) {
   const sisiB = parseInt(dataReq.sisi2);
   const sisiC = parseInt(dataReq.sisi3);
   // mengecek string atau integer
-  const isString1 = typeof dataReq.sisi1 === 'string';
-  const isString2 = typeof dataReq.sisi2 === 'string';
-  const isString3 = typeof dataReq.sisi3 === 'string';
+  typeof dataReq.sisi1 == 'string';
+  typeof dataReq.sisi2 == 'string';
+  typeof dataReq.sisi3 == 'string';
+// console log
+  console.log("test1 length:"+ dataReq.sisi1.length)
+  console.log("test2 length:"+ dataReq.sisi2.length)
+  console.log("test3 length:"+ dataReq.sisi3.length)
+  console.log(dataReq.sisi1.constructor === String)
+  console.log(dataReq.sisi2.constructor === String)
+  console.log(dataReq.sisi3.constructor === String)
+  console.log(typeof dataReq.sisi1)
+  
   // perubahan tipe data ke string
   const String1 = toString(dataReq.sisi1);
   const String2 = toString(dataReq.sisi2);
   const String3 = toString(dataReq.sisi3);
-
   // pengkondisian untuk memilih data yang tepat sesuai kondisi (abjad==abcdefg & simbol)
   if (
     dataReq.sisi1.match(regexforalp) == null &&
@@ -69,9 +77,12 @@ router.post("/", function (req, res, next) {
     dataReq.sisi1.match(regexLeadZer0) == null &&
     dataReq.sisi2.match(regexLeadZer0) == null &&
     dataReq.sisi3.match(regexLeadZer0) == null &&
-    dataReq.sisi1.length <= 3 &&
-    dataReq.sisi2.length <= 3 &&
-    dataReq.sisi3.length <= 3 
+    typeof dataReq.sisi1 == 'string' &&
+    typeof dataReq.sisi2 == 'string' &&
+    typeof dataReq.sisi3 == 'string' &&
+    String1.length <= 3 &&
+    String2.length <= 3 &&
+    String3.length <= 3 
   ) {
     //Melakukan pengkondisian untuk mencari bentuk segitiga berdasarkan jenisnya acuan Panjang
     // c2 = b2 + a2
@@ -105,7 +116,7 @@ router.post("/", function (req, res, next) {
       }
     }
     // Jenis Segitiga lainnya
-    else if (sisiA == sisiB || sisiB == sisiC) {
+    else if (sisiA == sisiB && sisiB == sisiC) {
       jenis = "Segitiga Sama Sisi";
       keliling = (parseInt(dataReq.sisi1) + parseInt(dataReq.sisi2) + parseInt(dataReq.sisi3)) + "cm";
     } else if (sisiA == sisiB || sisiA == sisiC) {
@@ -132,31 +143,33 @@ router.post("/", function (req, res, next) {
       keliling_segitiga: keliling
     };
     // Pengkondisian bila diisi character dan abjad
-  } else if (
-    dataReq.sisi1.match(regexfornum) != null ||
-    dataReq.sisi2.match(regexfornum) != null ||
-    dataReq.sisi3.match(regexfornum) != null ||
-    dataReq.sisi1.match(regex_symbols) != null ||
-    dataReq.sisi2.match(regex_symbols) != null ||
-    dataReq.sisi3.match(regex_symbols) != null ||
-    dataReq.sisi1.match(regexSpace) != null ||
-    dataReq.sisi2.match(regexSpace) != null ||
-    dataReq.sisi3.match(regexSpace) != null ||
-    dataReq.sisi1.match(regexZero) != null ||
-    dataReq.sisi2.match(regexZero) != null ||
-    dataReq.sisi3.match(regexZero) != null ||
-    dataReq.sisi1.match(regexLeadZer0) != null ||
-    dataReq.sisi2.match(regexLeadZer0) != null ||
-    dataReq.sisi3.match(regexLeadZer0) != null ||
-    dataReq.sisi1.length > 3 ||
-    dataReq.sisi2.length > 3 ||
-    dataReq.sisi3.length > 3 
-  ) {
+  } else {
     var dataRes = {
       rsp: "005",
       rspdesc: "Invalid Format Type of Data - Hanya angka, tidak boleh nol didepan & tidak boleh kosong !",
     };
-  } 
+  }
+  //   dataReq.sisi1.match(regexfornum) != null ||
+  //   dataReq.sisi2.match(regexfornum) != null ||
+  //   dataReq.sisi3.match(regexfornum) != null ||
+  //   dataReq.sisi1.match(regex_symbols) != null ||
+  //   dataReq.sisi2.match(regex_symbols) != null ||
+  //   dataReq.sisi3.match(regex_symbols) != null ||
+  //   dataReq.sisi1.match(regexSpace) != null ||
+  //   dataReq.sisi2.match(regexSpace) != null ||
+  //   dataReq.sisi3.match(regexSpace) != null ||
+  //   dataReq.sisi1.match(regexZero) != null ||
+  //   dataReq.sisi2.match(regexZero) != null ||
+  //   dataReq.sisi3.match(regexZero) != null ||
+  //   dataReq.sisi1.match(regexLeadZer0) != null ||
+  //   dataReq.sisi2.match(regexLeadZer0) != null ||
+  //   dataReq.sisi3.match(regexLeadZer0) != null ||
+  //   dataReq.sisi1.length > 3 ||
+  //   dataReq.sisi2.length > 3 ||
+  //   dataReq.sisi3.length > 3 
+  // ) {
+ 
+  //} 
 
   res.send(dataRes);
   console.log(
