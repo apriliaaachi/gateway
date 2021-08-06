@@ -27,7 +27,7 @@ router.post("/", function (req, res, next) {
   );   
 
   // variabel regex untuk mengecek abjad didalam string dan alfabet didalam string (sesuai kondisi)
-  const regexfornum = /[0-9]/g; //untuk mengecek angka
+  const regexfornum = /^[0-9]*$/; //untuk mengecek angka
   const regexforalp = /[a-zA-Z\\s]/g; //untuk mengecek huruf besar dan kecil
   const regex_symbols = /[-!$%^&*()_+|~=`{}\[\]:\/;<>?,.@#]/; //untuk mengecek character
   const regex_char = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/g; //untuk mengecek character,angka, dan abjad
@@ -37,27 +37,40 @@ router.post("/", function (req, res, next) {
 
   //deklarasi variabel-variabel yang dibutuhkan untuk menentukan jenis segitiga
   var jenis;
+  var hasil;
   var keliling;
-  var sisiA = parseInt(dataReq.sisi1);
-  var sisiB = parseInt(dataReq.sisi2);
-  var sisiC = parseInt(dataReq.sisi3);
+  const sisiA = parseInt(dataReq.sisi1);
+  const sisiB = parseInt(dataReq.sisi2);
+  const sisiC = parseInt(dataReq.sisi3);
+  // mengecek string atau integer
+  const isString1 = typeof dataReq.sisi1 === 'string';
+  const isString2 = typeof dataReq.sisi2 === 'string';
+  const isString3 = typeof dataReq.sisi3 === 'string';
+  //
+  const String1 = toString(dataReq.sisi1);
+  const String2 = toString(dataReq.sisi2);
+  const String3 = toString(dataReq.sisi3);
+
   // pengkondisian untuk memilih data yang tepat sesuai kondisi (abjad==abcdefg & simbol)
   if (
-    dataReq.sisi1.match(regexforalp) == null &&
-    dataReq.sisi2.match(regexforalp) == null &&
-    dataReq.sisi3.match(regexforalp) == null &&
-    dataReq.sisi1.match(regex_symbols) == null &&
-    dataReq.sisi2.match(regex_symbols) == null &&
-    dataReq.sisi3.match(regex_symbols) == null &&
-    dataReq.sisi1.match(regexSpace) == null &&
-    dataReq.sisi2.match(regexSpace) == null &&
-    dataReq.sisi3.match(regexSpace) == null &&
-    dataReq.sisi1.match(regexZero) == null &&
-    dataReq.sisi2.match(regexZero) == null &&
-    dataReq.sisi3.match(regexZero) == null &&
-    dataReq.sisi1.match(regexLeadZer0) == null &&
-    dataReq.sisi2.match(regexLeadZer0) == null &&
-    dataReq.sisi3.match(regexLeadZer0) == null
+    String1.match(regexforalp) == null &&
+    String2.match(regexforalp) == null &&
+    String3.match(regexforalp) == null &&
+    String1.match(regex_symbols) == null &&
+    String2.match(regex_symbols) == null &&
+    String3.match(regex_symbols) == null &&
+    String1.match(regexSpace) == null &&
+    String2.match(regexSpace) == null &&
+    String3.match(regexSpace) == null &&
+    String1.match(regexZero) == null &&
+    String2.match(regexZero) == null &&
+    String3.match(regexZero) == null &&
+    String1.match(regexLeadZer0) == null &&
+    String2.match(regexLeadZer0) == null &&
+    String3.match(regexLeadZer0) == null &&
+    dataReq.sisi1.length <= 3 &&
+    dataReq.sisi2.length <= 3 &&
+    dataReq.sisi3.length <= 3 
   ) {
     //Melakukan pengkondisian untuk mencari bentuk segitiga berdasarkan jenisnya acuan Panjang
     // c2 = b2 + a2
@@ -119,27 +132,33 @@ router.post("/", function (req, res, next) {
     };
     // Pengkondisian bila diisi character dan abjad
   } else if (
-    dataReq.sisi1.match(regexfornum) != null ||
-    dataReq.sisi2.match(regexfornum) != null ||
-    dataReq.sisi3.match(regexfornum) != null ||
-    dataReq.sisi1.match(regex_symbols) != null ||
-    dataReq.sisi2.match(regex_symbols) != null ||
-    dataReq.sisi3.match(regex_symbols) != null ||
-    dataReq.sisi1.match(regexSpace) != null ||
-    dataReq.sisi2.match(regexSpace) != null ||
-    dataReq.sisi3.match(regexSpace) != null ||
-    dataReq.sisi1.match(regexZero) != null ||
-    dataReq.sisi2.match(regexZero) != null ||
-    dataReq.sisi3.match(regexZero) != null ||
-    dataReq.sisi1.match(regexLeadZer0) != null ||
-    dataReq.sisi2.match(regexLeadZer0) != null ||
-    dataReq.sisi3.match(regexLeadZer0) != null
+    isString1 == false ||
+    isString2 == false ||
+    isString3 == false ||
+    String1.match(regexfornum) != null ||
+    String2.match(regexfornum) != null ||
+    String3.match(regexfornum) != null ||
+    String1.match(regex_symbols) != null ||
+    String2.match(regex_symbols) != null ||
+    String3.match(regex_symbols) != null ||
+    String1.match(regexSpace) != null ||
+    String2.match(regexSpace) != null ||
+    String3.match(regexSpace) != null ||
+    String1.match(regexZero) != null ||
+    String2.match(regexZero) != null ||
+    String3.match(regexZero) != null ||
+    String1.match(regexLeadZer0) != null ||
+    String2.match(regexLeadZer0) != null ||
+    String3.match(regexLeadZer0) != null ||
+    dataReq.sisi1.length > 3 ||
+    dataReq.sisi2.length > 3 ||
+    dataReq.sisi3.length > 3 
   ) {
     var dataRes = {
       rsp: "005",
       rspdesc: "Invalid Format Type of Data - Hanya angka, tidak boleh nol didepan & tidak boleh kosong !",
     };
-  }
+  } 
 
   res.send(dataRes);
   console.log(
