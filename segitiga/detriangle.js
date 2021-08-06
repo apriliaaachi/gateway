@@ -91,7 +91,7 @@ router.post("/", function (req, res, next) {
       }
     }
     // Jenis Segitiga lainnya
-    else if (sisiA == sisiB || sisiB == sisiC) {
+    else if (sisiA == sisiB && sisiB == sisiC) {
       jenis = "Segitiga Sama Sisi";
       keliling = (parseInt(dataReq.sisi1) + parseInt(dataReq.sisi2) + parseInt(dataReq.sisi3)) + "cm";
     } else if (sisiA == sisiB || sisiA == sisiC) {
