@@ -1,0 +1,10 @@
+{
+    "credential": [
+      {
+        "id": "ENCRYPTIONAES256CBC",
+        "key": "wDaBRdXxOtrwM57l",
+        "secret": "7pycJTpgo4",
+        "sign": false
+      }
+    ]
+  }  
