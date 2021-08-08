@@ -122,7 +122,7 @@ router.post("/", function (req, res, next) {
     else if (sisiA == sisiB && sisiB == sisiC) {
       jenis = "Segitiga Sama Sisi";
       keliling = (parseInt(dataReq.sisi1) + parseInt(dataReq.sisi2) + parseInt(dataReq.sisi3)) + "cm";
-    } else if (sisiA == sisiB || sisiA == sisiC) {
+    } else if (sisiA == sisiB || sisiA == sisiC || sisiB == sisiC) {
       jenis = "Segitiga Sama Kaki";
       keliling = (parseInt(dataReq.sisi1) + parseInt(dataReq.sisi2) + parseInt(dataReq.sisi3)) + "cm";
     } else {
