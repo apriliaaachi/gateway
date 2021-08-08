@@ -32,6 +32,10 @@ router.post("/", function (req, res, next) {
   const regexSpace = /\s/; //untuk mengecek spasi
   const regexZero = /^0*$/; //untuk mengecek hanya "0"
   const regexLeadZer0 = /^0+/; //untuk mengecek "0" didepan
+  // const regex new
+  // const regexfornum = new RegExp('^[0-9]+$') //untuk mengecek angka
+  // const regexZero = new RegExp('^[0]+$') //untuk mengecek angka "0"
+  // const regexLeadZero = new RegExp('^[0+/]+$')//untuk mengecek "0" didepan 
 
   //deklarasi variabel-variabel yang dibutuhkan untuk menentukan jenis segitiga
   var jenis;
@@ -40,30 +44,31 @@ router.post("/", function (req, res, next) {
   const sisiA = parseInt(dataReq.sisi1);
   const sisiB = parseInt(dataReq.sisi2);
   const sisiC = parseInt(dataReq.sisi3);
+ 
   // mengecek string atau integer
   typeof dataReq.sisi1 == 'string';
   typeof dataReq.sisi2 == 'string';
   typeof dataReq.sisi3 == 'string';
-// console log
-  console.log("test1 length:"+ dataReq.sisi1.length)
-  console.log("test2 length:"+ dataReq.sisi2.length)
-  console.log("test3 length:"+ dataReq.sisi3.length)
-  console.log(dataReq.sisi1.constructor === String)
-  console.log(dataReq.sisi2.constructor === String)
-  console.log(dataReq.sisi3.constructor === String)
-  console.log(typeof dataReq.sisi1)
-  console.log(typeof dataReq.sisi2)
-  console.log(typeof dataReq.sisi3)
-  // perubahan tipe data ke string
-  const String1 = toString(dataReq.sisi1);
-  const String2 = toString(dataReq.sisi2);
-  const String3 = toString(dataReq.sisi3);
+  // console log
+  // console.log("test1 length:"+ dataReq.sisi1.length)
+  // console.log("test2 length:"+ dataReq.sisi2.length)
+  // console.log("test3 length:"+ dataReq.sisi3.length)
+  // console.log(dataReq.sisi1.constructor === String)
+  // console.log(dataReq.sisi2.constructor === String)
+  // console.log(dataReq.sisi3.constructor === String)
+  // console.log(typeof dataReq.sisi1)
+  // console.log(typeof dataReq.sisi2)
+  // console.log(typeof dataReq.sisi3)
+  // // perubahan tipe data ke string
+  // const String1 = toString(dataReq.sisi1);
+  // const String2 = toString(dataReq.sisi2);
+  // const String3 = toString(dataReq.sisi3);
   // pengkondisian untuk memilih data yang tepat sesuai kondisi (abjad==abcdefg & simbol)
   if (
     typeof dataReq.sisi1 == 'string' &&
     typeof dataReq.sisi2 == 'string' &&
     typeof dataReq.sisi3 == 'string' &&
-    dataReq.sisi1.match(regexforalp) == null &&
+    dataReq.sisi1.match(regexforalp) == null && // regexforalp,symbols dan space bisa diganti sama yang dikirim achi
     dataReq.sisi2.match(regexforalp) == null &&
     dataReq.sisi3.match(regexforalp) == null &&
     dataReq.sisi1.match(regex_symbols) == null &&
@@ -82,8 +87,8 @@ router.post("/", function (req, res, next) {
     dataReq.sisi2.length <= 3 &&
     dataReq.sisi3.length <= 3 
   ) {
-    //Melakukan pengkondisian untuk mencari bentuk segitiga berdasarkan jenisnya acuan Panjang
-    // c2 = b2 + a2
+  //Melakukan pengkondisian untuk mencari bentuk segitiga berdasarkan jenisnya acuan Panjang
+  // c2 = b2 + a2
     if ((sisiC * sisiC) == (sisiB * sisiB) + (sisiA * sisiA)) {
       if ((sisiA == sisiB) || (sisiA == sisiC)) {
         jenis = "Segitiga Siku-siku Sama Kaki";
@@ -93,7 +98,7 @@ router.post("/", function (req, res, next) {
         keliling = (parseInt(dataReq.sisi1) + parseInt(dataReq.sisi2) + parseInt(dataReq.sisi3)) + "cm";
       }
     }
-    // b2 = c2 + a2
+  // b2 = c2 + a2
     else if ((sisiB * sisiB) == (sisiC * sisiC) + (sisiA * sisiA)) {
       if ((sisiA == sisiB) || (sisiA == sisiC)) {
         jenis = "Segitiga Siku-siku Sama Kaki";
@@ -103,7 +108,7 @@ router.post("/", function (req, res, next) {
         keliling = (parseInt(dataReq.sisi1) + parseInt(dataReq.sisi2) + parseInt(dataReq.sisi3)) + "cm";
       }
     }
-    // a2 = c2 + b2
+  // a2 = c2 + b2
     else if ((sisiA * sisiA) == (sisiC * sisiC) + (sisiB * sisiB)) {
       if ((sisiA == sisiB) || (sisiA == sisiC)) {
         jenis = "Segitiga Siku-siku Sama Kaki";
@@ -113,7 +118,7 @@ router.post("/", function (req, res, next) {
         keliling = (parseInt(dataReq.sisi1) + parseInt(dataReq.sisi2) + parseInt(dataReq.sisi3)) + "cm";
       }
     }
-    // Jenis Segitiga lainnya
+  // Jenis Segitiga lainnya
     else if (sisiA == sisiB && sisiB == sisiC) {
       jenis = "Segitiga Sama Sisi";
       keliling = (parseInt(dataReq.sisi1) + parseInt(dataReq.sisi2) + parseInt(dataReq.sisi3)) + "cm";
@@ -140,7 +145,7 @@ router.post("/", function (req, res, next) {
       jenis_segitiga: jenis,
       keliling_segitiga: keliling
     };
-    // Pengkondisian bila diisi character dan abjad
+  // Pengkondisian bila diisi character dan abjad
   } else {
     var dataRes = {
       rsp: "005",
