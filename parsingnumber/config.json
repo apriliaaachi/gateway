@@ -1,0 +1,17 @@
+{
+  "credential": [
+    {
+      "id": "parsingojt",
+      "key": "qwerty",
+      "secret": "7pycJTpgo4",
+      "sign": false
+    }
+  ],
+  "apikey": {
+    "id": "parsingojt",
+    "key": "qwerty"
+  },
+  "url": {
+    "inqA": "http://localhost:2209/api/inq/inqa2"
+  }
+}
