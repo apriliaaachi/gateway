@@ -12,6 +12,6 @@ router.use(bodyParser.urlencoded({ extended: true }))
 
 /* use Function */
 router.use('/', credential)
-router.use('/parsing', parsing)
+router.use('/execute', parsing)
 
 module.exports = router

@@ -12,6 +12,6 @@ router.use(bodyParser.urlencoded({ extended: true }))
 
 /* use Function */
 router.use('/', credential)
-router.use('/aes-cbc', encryption)
+router.use('/execute', encryption)
 
 module.exports = router

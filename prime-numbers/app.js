@@ -12,6 +12,6 @@ router.use(bodyParser.urlencoded({ extended: true }))
 
 /* use Function */
 router.use('/', credential)
-router.use('/prime-numbers', primenumbers)
+router.use('/check', primenumbers)
 
 module.exports = router

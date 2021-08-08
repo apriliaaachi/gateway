@@ -12,6 +12,6 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 /* use function */
 router.use("/", credential);
-router.use("/aes256cbc", aes256cbc);
+router.use("/execute", aes256cbc);
 
 module.exports = router;
